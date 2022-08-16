@@ -12,15 +12,9 @@ COLUMNS = [
     'price'
 ]
 
-# with open('links_test.txt', 'r', encoding='utf-8') as f:
 with open('./links/divar_apartment_links.txt', 'r', encoding='utf-8') as f:
   links = f.readlines()
-  # for i in range(len(links)):
-  #   print(links[i].strip())
-  # i = 0
-  # while True:
-    # print(links[i].strip())
-    # i += 1
+
 print(f'number of links: {len(links)}')
 
 i = 0
@@ -29,7 +23,7 @@ i = 0
 def main():
   global i
 
-  with open('divar_apartments_test.csv', 'w', encoding='utf-8') as csv_file:
+  with open('divar_apartments.csv', 'w', encoding='utf-8') as csv_file:
     writer = csv.DictWriter(csv_file,
                             fieldnames=COLUMNS,
                             delimiter=',',
@@ -58,18 +52,6 @@ def main():
       i += 1
       time.sleep(1)
       print(f'link {i} scraped.')
-
-    # for link in links:
-    #   print(f'i = {i}')
-    #   link = link.strip()
-    #   data = get_data(f'{URL}{link}')
-
-    #   writer.writerow(data)
-
-    #   time.sleep(1)
-    #   print(f'{link} scraped.')
-
-    #   i += 1
 
 
 if __name__ == '__main__':
