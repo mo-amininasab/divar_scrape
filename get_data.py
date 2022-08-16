@@ -1,5 +1,4 @@
 import time
-import random
 import csv
 
 from utils import get_data
@@ -36,9 +35,8 @@ def main():
 
       writer.writerow(data)
 
-      sleep = random.uniform(1, 2)
-      time.sleep(sleep)
-      print(f'{link} scraped. sleeping for {sleep} seconds.')
+      time.sleep(1)
+      print(f'{link} scraped.')
 
       i += 1
 
@@ -47,4 +45,4 @@ if __name__ == '__main__':
   t1 = time.time()
   main()
   t2 = time.time()
-  print(f'time: {t2 - t1}')
+  print(f'Execution Time: {t2 - t1}')
