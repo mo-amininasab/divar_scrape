@@ -55,7 +55,10 @@ def get_data(url):
   floor = None
   for item in list3:
     if 'قیمت کل' in item.contents[0].text:
-      price = p2e(item.contents[1].text.split(' ')[0].strip())
+      if 'توافقی' in item.contents[1].text:
+        price = 'adaptive'
+      else:
+        price = p2e(item.contents[1].text.split(' ')[0].strip())
     if 'قیمت هر متر' in item.contents[0].text:
       price_per_meter = p2e(item.contents[1].text.split(' ')[0].strip())
     if 'طبقه' in item.contents[0].text:

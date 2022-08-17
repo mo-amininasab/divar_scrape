@@ -23,7 +23,7 @@ i = 0
 def main():
   global i
 
-  with open('divar_apartments.csv', 'w', encoding='utf-8') as csv_file:
+  with open('data/divar_apartments.csv', 'w', encoding='utf-8') as csv_file:
     writer = csv.DictWriter(csv_file,
                             fieldnames=COLUMNS,
                             delimiter=',',
@@ -39,6 +39,7 @@ def main():
         break
       try:
         data = get_data(link)
+        print(f'data: {data}')
       except requests.HTTPError as e:
         print('Error: 404 page')
         i += 1
@@ -58,4 +59,4 @@ if __name__ == '__main__':
   t1 = time.time()
   main()
   t2 = time.time()
-  print(f'Execution Time: {t2 - t1}')
+  print(f'Execution Time: {(t2 - t1) / 60} minutes.')
