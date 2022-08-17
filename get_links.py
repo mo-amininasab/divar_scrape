@@ -7,7 +7,7 @@ URL = 'https://divar.ir/s/karaj'
 APARTMENT = 'buy-apartment'
 VILLA = 'buy-villa'
 
-QUERY = 'price=-1200000000'
+QUERY = 'price=-1900000000'
 
 
 def get_items(url, type, page=1):
@@ -26,7 +26,7 @@ i = 1
 
 def main():
   global i
-  with open('divar_apartment_links.txt', 'w', encoding='utf-8') as links_file:
+  with open('links/divar_apartment_links.txt', 'w', encoding='utf-8') as links_file:
     try:
       while True:
         items = get_items(URL, APARTMENT, i)
@@ -37,9 +37,15 @@ def main():
           break
 
         for item in items:
-          for div in item.div:
-            href = div.get('href')
-            links_file.write(f'https://divar.ir{href}\n')
+          href = item.a['href']
+
+          if href == None:
+            print('No href')
+            break
+
+          link = f'https://divar.ir{href}'
+          links_file.write(f'{link}\n')
+          print(f'Page {i} - {link}')
 
         i += 1
         time.sleep(1)
@@ -54,4 +60,4 @@ if __name__ == '__main__':
   t1 = time.time()
   main()
   t2 = time.time()
-  print(f'Execution Time: {t2 - t1} seconds.')
+  print(f'Execution Time: {(t2 - t1) / 60} minutes.')
